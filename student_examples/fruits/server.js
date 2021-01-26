@@ -13,22 +13,11 @@ const logger = require('morgan');
 //.use() is a method used for middleware 
 app.use(logger('dev'))
 
-//move fruits object to fruits.js NOTE: it must start with ./ if it's just a file, not an NPM package
-const fruits = require('./models/fruits')
+//import the routes
+const fruitsController = require('./controllers/fruits.js');
+app.use('/fruits', fruitsController);
 
-//create fruits get route
-app.get('/fruits', (req, res) => {
-    res.json({
-        fruits: fruits
-    });
-});
-
-//create a SHOW route
-app.get('/fruits/:i', (req, res) => {
-    res.json({
-        fruit: fruits[req.params.i]
-    });
-});
+//END MIDDLEWARE
 
 //configure server to listen on the port
 app.listen(PORT, () => {
