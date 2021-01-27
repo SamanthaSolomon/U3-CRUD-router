@@ -13,9 +13,13 @@ const logger = require('morgan');
 //.use() is a method used for middleware 
 app.use(logger('dev'))
 
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
+
 //import the routes
 const fruitsController = require('./controllers/fruits.js');
 app.use('/fruits', fruitsController);
+
 
 //END MIDDLEWARE
 

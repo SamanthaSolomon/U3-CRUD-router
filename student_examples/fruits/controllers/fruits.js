@@ -22,12 +22,33 @@ router.get('/:i', (req, res) => {
 
 //CREATE ROUTE
 router.post('/', (req, res) => {
+console.log('POST - req.body', req.body);
+fruits.push(req.body)
+console.log('fruits-', fruits)
 res.json({
-    route: 'post route'
+    route: 'post route',
+    fruits: fruits
 })
 })
 
+// DELETE ROUTE
+router.delete('/:index', (req,res) => {
+    fruits.splice(req.params.index, 1)
+    res.json({
+        route: 'delete route',
+        id: req.params.index
+    })
+})
 
+//UPDATE ROUTE
+router.put('/:index', (req,res) => {
+    console.log('put-req.body', req.body)
+    console.log('put-req.params.index', req.params.index)
+    fruits[req.params.index] = req.body
+    res.json({
+        route: 'put route'
+    })
+})
 
 
 
